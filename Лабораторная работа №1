@@ -1,0 +1,62 @@
+<html>
+<head/>
+<body>
+<p>Ñ ïîìîùüþ àëãîðèòìà Áðåçåíõåìà ïîñòðîèòü 10 îòðåçêîâ ïðÿìîé èç òî÷êè (0,0)
+ðàâíîìåðíî òàíãåíñàìè óãëà íàêëîíà îò 0 äî -1</p>
+<canvas id='lab01' width='160' height='100'>
+	<script>
+		var canvas = document.getElementById('lab01');
+		var ctx = canvas.getContext('2d');
+		ctx.fillStyle='#00BBAA';
+		var k = 1;
+		for (j=0; j<10; j++) {
+			var delta=0;
+			var y = 0;
+			for (i=0; i<100; i++) {
+				if (delta >= 10) {
+					y+=1;
+					delta-=10;
+				}
+				delta += j;
+				ctx.fillRect(i, y, 1, 1);
+			}
+		}
+		ctx.restore;		
+	</script>
+</canvas>
+<p>Ñ ïîìîùüþ àëãîðèòìà Áðåçåíõåìà ïîñòðîèòü îêðóæíîñòü ðàäèóñà 53.
+Ñäåëàòü âîçìîæíîñòü èçìåíÿòü ðàäèóñ â ïåðåìåííîé</p>
+<canvas id='lab01.1' width='160' height='240'>
+	<script>
+		var canvas = document.getElementById('lab01.1');
+		var ctx = canvas.getContext('2d');
+		ctx.fillStyle='#000076';
+		var dfs = 6, dfd = -202;
+		var F = -103; // 53^2+1^2+52^2+1^2-2*53^2
+		var x = -53, y = 0;
+		var x0=60, y0=60;
+		while (x+y<0) {
+			ctx.fillRect(x0+x, y0+y, 1, 1);
+			ctx.fillRect(x0-x, y0+y, 1, 1);
+			ctx.fillRect(x0+x, y0-y, 1, 1);
+			ctx.fillRect(x0-x, y0-y, 1, 1);
+			ctx.fillRect(y0+y, x0+x, 1, 1);
+			ctx.fillRect(y0-y, x0+x, 1, 1);
+			ctx.fillRect(y0+y, x0-x, 1, 1);
+			ctx.fillRect(y0-y, x0-x, 1, 1);
+			if (F>0) {
+				x++;
+				F+=dfd;
+				dfd+=4;
+			} else {
+				F+=dfs;
+			}
+			dfd+=4;
+			dfs+=4;
+			y++;
+		}
+		ctx.restore;		
+	</script>
+</canvas>
+</body>
+</html>
